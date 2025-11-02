@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Rocket, PlusCircle, Search } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({ onPostClick, right }) {
   const [open, setOpen] = useState(false);
 
   const links = [
@@ -42,12 +42,15 @@ export default function Navbar() {
               className="w-56 rounded-lg border border-white/10 bg-white/5 py-2 pl-9 pr-3 text-sm text-white placeholder:text-white/40 outline-none transition focus:border-white/20 focus:bg-white/10"
             />
           </div>
-          <a
-            href="#post"
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition hover:from-blue-600 hover:to-indigo-600"
-          >
-            <PlusCircle className="h-4 w-4" /> Post an Ad
-          </a>
+          {onPostClick && (
+            <button
+              onClick={onPostClick}
+              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition hover:from-blue-600 hover:to-indigo-600"
+            >
+              <PlusCircle className="h-4 w-4" /> Post an Ad
+            </button>
+          )}
+          {right}
         </div>
 
         <button
@@ -81,12 +84,15 @@ export default function Navbar() {
                 {l.name}
               </a>
             ))}
-            <a
-              href="#post"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition hover:from-blue-600 hover:to-indigo-600"
-            >
-              <PlusCircle className="h-4 w-4" /> Post an Ad
-            </a>
+            {onPostClick && (
+              <button
+                onClick={onPostClick}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-indigo-500/25 transition hover:from-blue-600 hover:to-indigo-600"
+              >
+                <PlusCircle className="h-4 w-4" /> Post an Ad
+              </button>
+            )}
+            {right}
           </nav>
         </div>
       )}
